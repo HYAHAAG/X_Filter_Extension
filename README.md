@@ -1,1 +1,6 @@
-# X Filter Extension 
+# X Filter Extension
+特定条件でX（旧Twitter）の投稿を非表示にするブラウザ拡張機能。
+
+## フィルタ条件
+- フォロワーがフォローより20%以上少ない
+- フォロワーが3000人未満

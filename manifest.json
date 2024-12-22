@@ -1,1 +1,14 @@
-{} 
+{
+    "manifest_version": 3,
+    "name": "X Filter Extension",
+    "version": "1.0",
+    "description": "特定条件でXの投稿を非表示にする拡張機能",
+    "permissions": ["activeTab"],
+    "host_permissions": ["https://x.com/*"],
+    "content_scripts": [
+        {
+            "matches": ["https://x.com/*"],
+            "js": ["content.js"]
+        }
+    ]
+}
