@@ -1,14 +1,21 @@
 {
     "manifest_version": 3,
-    "name": "X Filter Extension",
+    "name": "Twitter Like Filter",
     "version": "1.0",
-    "description": "特定条件でXの投稿を非表示にする拡張機能",
-    "permissions": ["activeTab"],
-    "host_permissions": ["https://x.com/*"],
+    "description": "一定数以下のいいねのコメントを非表示にする",
+    "icons": {
+      "48": "icon.png"
+    },
+    "permissions": ["storage"],
+    "host_permissions": [
+      "https://twitter.com/*",
+      "https://x.com/*"
+    ],
     "content_scripts": [
-        {
-            "matches": ["https://x.com/*"],
-            "js": ["content.js"]
-        }
+      {
+        "matches": ["https://twitter.com/*", "https://x.com/*"],
+        "js": ["content.js"]
+      }
     ]
-}
+  }
+  
