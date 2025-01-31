@@ -1,5 +1,4 @@
-const LIKE_THRESHOLD = 50; // いいね数の閾値
-const CHECK_INTERVAL = 10000; // 10秒ごとにフィルタリング
+const LIKE_THRESHOLD = 10; // いいね数の閾値
 const processedTweets = new Set(); // 処理済みツイートを記録
 
 function filterComments() {
@@ -19,10 +18,12 @@ function filterComments() {
         let likeCount = parseInt(likeSpan.innerText.replace(/[^0-9]/g, '')) || 0;
         console.log(`ツイート #${index + 1}: いいね数 = ${likeCount}`);
 
-        // ✅ いいね数が閾値以下なら非表示
+        // ✅ いいね数が閾値未満なら「透過＆高さを小さく」する
         if (likeCount < LIKE_THRESHOLD) {
-            console.log(`ツイート #${index + 1} を非表示`);
-            tweet.style.display = "none";
+            console.log(`ツイート #${index + 1} を縮小＆透過`);
+            tweet.style.opacity = "0.2";  // 透明度を下げる
+            tweet.style.maxHeight = "50px"; // 高さを小さく
+            tweet.style.overflow = "hidden"; // スクロールを防ぐ
         }
 
         processedTweets.add(tweet); // 処理済みリストに追加
@@ -31,9 +32,6 @@ function filterComments() {
     console.log("フィルタリング終了");
 }
 
-// MutationObserverで動的に追加されたツイートを監視
+// ✅ MutationObserver でリアルタイム監視（setIntervalは削除）
 const observer = new MutationObserver(() => filterComments());
 observer.observe(document.body, { childList: true, subtree: true });
-
-// 一定間隔でフィルタリングを実行（負荷軽減）
-setInterval(filterComments, CHECK_INTERVAL);
