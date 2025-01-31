@@ -1,4 +1,4 @@
-const LIKE_THRESHOLD = 30; // いいねの閾値（例: 10以下は非表示）
+const LIKE_THRESHOLD = 50; // いいねの閾値（例: 10以下は非表示）
 const CHECK_INTERVAL = 5000; // 5秒ごとにチェック
 
 function filterComments() {
